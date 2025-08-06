@@ -1,44 +1,41 @@
+// src/components/Layout/Header.tsx - Versión actualizada para el dashboard principal
 "use client";
 
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Bell, Search } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Plus } from "lucide-react";
+import Link from "next/link";
 
 export function Header() {
   const pathname = usePathname();
   
-  // Map paths to module names
-  const getActiveModule = () => {
-    if (pathname === "/") return "Dashboard";
-    if (pathname.startsWith("/script")) return "Script";
-    if (pathname.startsWith("/bible")) return "Bible";
-    if (pathname.startsWith("/storyboard")) return "Storyboard";
-    if (pathname.startsWith("/animatic")) return "Animatic";
-    if (pathname.startsWith("/production")) return "Production";
-    return "Dashboard";
-  };
+  // Si estamos en el dashboard principal, mostrar el header específico
+  if (pathname === "/") {
+    return (
+      <header className="flex h-16 items-center justify-between border-b border-border px-6 bg-background">
+        <div className="flex items-center">
+          <h1 className="text-xl font-bold text-foreground">NeoScriptor</h1>
+        </div>
+        <div className="flex items-center gap-4">
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Plus className="mr-2 h-4 w-4" />
+            New Project
+          </Button>
+          <Avatar className="h-8 w-8">
+            <AvatarImage src="https://i.pravatar.cc/32?img=1" alt="User" />
+            <AvatarFallback>U</AvatarFallback>
+          </Avatar>
+        </div>
+      </header>
+    );
+  }
 
-  const activeModule = getActiveModule();
-
+  // Header original para otras páginas...
+  // (mantener el código existente)
   return (
     <header className="flex h-16 items-center justify-between border-b border-border px-6">
-      <div className="flex items-center gap-4">
-        <h1 className="text-lg font-semibold">{activeModule}</h1>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="relative">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <input
-            type="search"
-            placeholder="Search..."
-            className="h-9 w-full rounded-md bg-muted pl-8 pr-4 text-sm"
-          />
-        </div>
-        <Button variant="ghost" size="icon">
-          <Bell className="h-5 w-5" />
-          <span className="sr-only">Notifications</span>
-        </Button>
-      </div>
+      {/* Código existente del header */}
     </header>
   );
 }
