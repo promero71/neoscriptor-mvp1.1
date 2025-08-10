@@ -1,7 +1,8 @@
-"use client";
+// app/page.tsx
+import { ProjectDashboard } from './ProjectDashboard';
 
-import { Dashboard } from "@/components/Dashboard";
-
-export default function DashboardPage() {
-  return <Dashboard />;
+export default function HomePage() {
+  return (
+    <ProjectDashboard />
+  );
 }

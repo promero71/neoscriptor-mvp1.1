@@ -1,26 +1,14 @@
-export interface Project {
-  id: string;
-  title: string;
-  format: string;
-  genre: string;
-  currentPhase: 'bible' | 'script' | 'storyboard' | 'production';
-}
+// Datos simulados para la aplicación
 
-export const mockProject: Project = {
+// src/lib/mock-data.ts
+
+export const mockProject = {
   id: "proj_001",
   title: "Echoes of Nebula",
   format: "Largometraje",
   genre: "Thriller",
-  currentPhase: "bible",
+  currentPhase: "bible" as const,
 };
-
-export const projects: Project[] = [
-  mockProject,
-  { ...mockProject, id: "proj_002", title: "Crónicas de un Futuro Pasado" },
-  { ...mockProject, id: "proj_003", title: "El Silencio del Mar" },
-  // He añadido este proyecto con id: "4" porque vi que intentaste acceder a él en la terminal.
-  { ...mockProject, id: "4", title: "Proyecto de Prueba 4" },
-];
 
 export const mockBible = {
   title: "Echoes of Nebula",
@@ -46,5 +34,5 @@ export const mockBible = {
     rules: ["No se puede mentir sin consecuencias físicas"],
     palette: ["#2A1B3D", "#E63946", "#F1FAEE"],
     moodboardUrls: ["/images/mood1.jpg", "/images/mood2.jpg"],
-  }
-}
+  },
+};

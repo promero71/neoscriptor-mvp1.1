@@ -1,33 +1,27 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+// app/layout.tsx
+import './globals.css';
 import { cn } from "@/lib/utils";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/Sidebar/AppSidebar";
 import { Header } from "@/components/Layout/Header";
-
-const fontSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-export const metadata: Metadata = {
-  title: "NeoScriptor",
-  description: "Gestiona tus proyectos audiovisuales.",
-};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-        <div className="flex flex-col h-screen">
-          <Header />
-          <div className="flex-1 overflow-auto">
-            {children}
-          </div>
-        </div>
+    <html lang="es" className="dark" suppressHydrationWarning>
+      <body className={cn("min-h-screen bg-background text-foreground font-sans antialiased")}>
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <Header />
+            <main className="p-6 flex-grow overflow-y-auto">
+              {children}
+            </main>
+          </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );
